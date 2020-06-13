@@ -25,6 +25,14 @@ requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
+## Fetch Data from Web
+fetch: requirements
+	$(PYTHON_INTERPRETER) src/data/make_fetch.py data/raw/html.txt
+
+## Parse Data from HTML
+parse: requirements
+	$(PYTHON_INTERPRETER) src/data/make_parse.py data/raw/html.txt data/raw/companies.csv
+
 ## Make Dataset
 data: requirements
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
